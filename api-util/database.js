@@ -48,6 +48,9 @@ export const users = {
     saveStore();
     return store.users;
   },
+  getById: async (id) => {
+    return (await users.get()).find((user) => user.id === id);
+  },
 };
 
 export const comments = {
