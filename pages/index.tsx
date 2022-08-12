@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { AuthenticationProvider } from "../context/Authentication";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -28,10 +29,16 @@ const Home: NextPage = () => {
           in the repository for the challenge instructions
         </p>
 
-        <h2>Good Luck!</h2>
+        <h2>Good Luck!!</h2>
       </main>
     </div>
   );
 };
 
-export default Home;
+const ProvidedApp = () => (
+  <AuthenticationProvider>
+    <Home />
+  </AuthenticationProvider>
+);
+
+export default ProvidedApp;

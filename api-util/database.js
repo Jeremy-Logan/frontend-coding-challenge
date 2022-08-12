@@ -127,7 +127,7 @@ export const posts = {
         resp.data.map(({ title, body, ...basePost }) => {
           // Randomly add image to basePost
           if (Math.random() > 0.5) {
-            basePost.image = `https://picsum.photos/id/${basePost.id}/200/300`;
+            basePost.image = `https://picsum.photos/id/${basePost.id}/400/300`;
           }
 
           // If the basePost doesn't have an image, then it must have a body
