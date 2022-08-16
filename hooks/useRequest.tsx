@@ -15,5 +15,17 @@ export const useGetPosts = (path: string) => {
 
 }
 
+export const useGetUsers = (path: string) => {
+    if (!path) {
+        throw new Error("Path is required")
+    }
+    const url = baseUrl + path
+
+    const { data: users, error } = useSWR(url, fetcher)
+
+    return{ users, error }
+
+}
+
 
 

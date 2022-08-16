@@ -7,25 +7,23 @@ import _ from 'lodash'
 
 const Home: NextPage = () => {
 	const { posts, error } = useGetPosts('/posts')
+	
 	if (error) return <h1>Something went wrong!</h1>
 	if (!posts) return <h1>Loading...</h1>
 
-  const orderedPosts = _.orderBy(posts, ['id'], ['desc'])
+  const orderedPosts = _.orderBy(posts, ['id'], ['desc']) // Order posts from newsest to oldest via the post ID
 
 	return (
-		<div className='p-[0 2rem]'>
+		<div>
 			<Head>
 				<title>Practicegenius Post Feed</title>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
 			<main className='min-h-[100vh] p-[4rem 0] flex flex-col justify-center items-center bg-slate-200'>
-       
-				{orderedPosts.map((post: any) => (
-					<>
-						<Post key={post.id} post={post} />
-						{console.log(post)}
-					</>
+				{orderedPosts && orderedPosts.map((post: any) => (
+          
+					<Post key={post.id} {...post} />
 				))}
 			</main>
 		</div>
