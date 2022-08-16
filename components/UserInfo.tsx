@@ -11,7 +11,7 @@ const UserInfo = ({ userId }: PostProps) => {
 
 	return (
 		<>
-			<div className='flex flex-row justify-start'>{console.log(users)}
+			<div className='flex flex-row justify-start'>
 				{users.avatar ? 
                 <div className='relative h-10 w-10 rounded-full overflow-hidden'>
 					<Image
