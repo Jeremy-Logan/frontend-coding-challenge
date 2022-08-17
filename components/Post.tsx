@@ -1,13 +1,25 @@
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import UserInfo from './UserInfo'
-import CommentsSection from './CommentsSection';
+import CommentsSection from './CommentsSection'
 
 export interface PostProps {
-	userId?: number; id?: number; image?: string; body?: string; commentCount?: number
+	userId?: number
+	id?: number
+	image?: string
+	body?: string
+	commentCount?: number
 }
 
 const Post = ({ userId, id, image, body, commentCount }: PostProps) => {
-    if (!id)
+	const [count, setCount] = useState<number>(0)
+
+	useEffect(() => {
+		const updateCount: number | any = commentCount
+		setCount(updateCount)
+	}, [commentCount])
+
+	if (!id)
 		return (
 			<div className='border border-slate-300 shadow rounded-md p-4 max-w-sm mx-auto mt-2 w-[420px] bg-white'>
 				<div className='animate-pulse flex space-x-4'>
@@ -42,7 +54,7 @@ const Post = ({ userId, id, image, body, commentCount }: PostProps) => {
 					/>
 				</div>
 			)}
-            <CommentsSection commentCount={commentCount} id={id}/>
+			<CommentsSection commentCount={count} id={id} />
 		</div>
 	)
 }

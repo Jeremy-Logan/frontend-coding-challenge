@@ -7,11 +7,11 @@ import _ from 'lodash'
 
 const Home: NextPage = () => {
 	const { posts, error } = useGetPosts('/posts')
-	
+
 	if (error) return <h1>Something went wrong!</h1>
 	if (!posts) return <h1>Loading...</h1>
 
-  const orderedPosts = _.orderBy(posts, ['id'], ['desc']) // Order posts from newsest to oldest via the post ID
+	const orderedPosts = _.orderBy(posts, ['id'], ['desc']) // Order posts from newest to oldest via the post ID
 
 	return (
 		<div>
@@ -21,10 +21,10 @@ const Home: NextPage = () => {
 			</Head>
 
 			<main className='min-h-[100vh] p-[4rem 0] flex flex-col justify-center items-center bg-slate-200'>
-				{orderedPosts && orderedPosts.map((post: any) => (
-          
-					<Post key={post.id} {...post} />
-				))}
+				{orderedPosts &&
+					orderedPosts.map((post: any) => (
+						<Post key={post.id} {...post} />
+					))}
 			</main>
 		</div>
 	)

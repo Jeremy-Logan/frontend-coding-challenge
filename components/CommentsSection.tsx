@@ -1,6 +1,7 @@
 import { PostProps } from './Post'
 import { useState, useEffect } from 'react'
 import { useGetPosts } from '../hooks/useRequest'
+import _ from 'lodash'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import { Transition } from '@headlessui/react'
@@ -8,14 +9,14 @@ import { AnnotationIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
 function CommentsSection({ commentCount, id }: PostProps) {
 	const [open, setOpen] = useState(false)
-	const { posts, error } = useGetPosts(`/posts/${id}/comments`)
-    const [comments, setComments] = useState([])
+	const { posts } = useGetPosts(`/posts/${id}/comments`)
+	const [comments, setComments] = useState([])
+	const orderedComments = _.orderBy(comments, ['id'], ['desc']) // Order comments from newsest to oldest via the comment ID
 
 	useEffect(() => {
 		setComments(posts)
 	}, [posts])
 
-	if (error) return <h1>Something went wrong!</h1>
 	if (!comments)
 		return (
 			<div className='flex items-center justify-start mt-2 ml-2 mb-4'>
@@ -44,9 +45,11 @@ function CommentsSection({ commentCount, id }: PostProps) {
 				leaveFrom='opacity-100 '
 				leaveTo='opacity-0 '>
 				{id && <CommentForm id={id} />}
-				{(comments ?? []).map((post: any) => (
-						<Comment key={post.id} {...post} />
-					))}
+				{(orderedComments ?? []).map((comment: any, i) => (
+					<>
+						<Comment key={comment.id} {...comment} />
+					</>
+				))}
 			</Transition>
 		</div>
 	)
