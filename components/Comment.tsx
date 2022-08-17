@@ -86,6 +86,7 @@ export default function Comment({ body, userId, id, postId }: Props) {
 							}}>
 							<PencilIcon className='h-4 w-4 text-right text-slate-500 rounded-md active:text-slate-800 focus:outline-none focus:ring-[1px] focus:ring-slate-400' />
 						</button>
+                        {/* Delete button only shows after comment editor has been opened */}
 						{editorOpen ? (
 							<button
                             aria-label='Delete Comment'

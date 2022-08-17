@@ -1,5 +1,17 @@
 # Practicegenius Frontend Coding Assessment
 
+## My Notes
+
+- I used SWR for the requests. SWR helps to decrease loading times and has a built in caching system. Mutations came in handy when editing and deleting comments.
+- I used Tailwind for styling because I am much faster with it and it rocks(in my opinion)!
+- I used grays for the element colors because they are unobtrusive and the designer in this senario would hopefully provide a palette when they got bacl from vacation. :laughing:
+- In a real world production setting I would probably implement either pagination or some kind of lazy-loading for the posts.
+- I would also add a confirmation message when deleting comments to give the user a chance to back out.
+- Ocassionally the API would have trouble loading an image file complaining that the file didn't exist. I felt like tracking this down was probably outside the scope of this test. If asked to solve this I would probably just provide a placeholder image if the image failed to load.
+- Overall it was a fun challenge! I haven't seen one quite like this before. 
+
+
+
 Hello and welcome! This short assessment is designed to be a quick demonstration of your frontend development skills. We are looking to evaluate your ability to
 
 - Fetch, process, and transform data from a REST API
