@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 	const orderedPosts = _.orderBy(posts, ['id'], ['desc']) // Order posts from newest to oldest via the post ID
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Practicegenius Post Feed</title>
 				<link rel='icon' href='/favicon.ico' />
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 						<Post key={post.id} {...post} />
 					))}
 			</main>
-		</div>
+		</>
 	)
 }
 

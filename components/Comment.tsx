@@ -1,6 +1,9 @@
+// Delete button appears when logged in user clicks the edit button on their own posts. 
+// Something to add would be a confirmation button before deleting the comment to give the user a chance to back out.
+
 import UserInfo from './UserInfo'
 import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react'
-import { mutate } from 'swr'
+import { useSWRConfig } from 'swr'
 import axios from 'axios'
 import { useAuthentication } from '../context/Authentication'
 import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
@@ -9,6 +12,7 @@ type Props = { body: string; userId: number; id: number; postId: number }
 
 export default function Comment({ body, userId, id, postId }: Props) {
 	const userContext = useAuthentication()
+    const { mutate } = useSWRConfig()
 	const [editorOpen, setEditorOpen] = useState(false)
 	const [comment, setComment] = useState<string>(body)
 
@@ -16,23 +20,19 @@ export default function Comment({ body, userId, id, postId }: Props) {
 		const newComment = {
 			body: comment,
 		}
-		mutate(`/api/posts/${postId}/comments/${id}`)
 		const response = await axios.patch(
 			`/api/posts/${postId}/comments/${id}`,
 			newComment
 		)
 		mutate(`/api/posts/${postId}/comments/${id}`)
-
 		setEditorOpen(false)
 	}
 
 	const handleDelete = async () => {
-		mutate(`/api/posts/${postId}/comments/${id}`, false)
 		const response = await axios.delete(
 			`/api/posts/${postId}/comments/${id}`
 		)
 		mutate(`/api/posts/${postId}/comments`)
-
 		setEditorOpen(false)
 	}
 
@@ -48,7 +48,7 @@ export default function Comment({ body, userId, id, postId }: Props) {
 			<UserInfo userId={userId} />
 			<div className='flex items-start justify-between'>
 				{!editorOpen ? (
-					<p className='text-xs mt-1 whitespace-pre-line mx-4'>
+					<p className='text-xs mt-2 whitespace-pre-line mx-4'>
 						{comment}
 					</p>
 				) : null}
@@ -79,6 +79,7 @@ export default function Comment({ body, userId, id, postId }: Props) {
 				{userContext.user.id && userContext.user.id === userId ? (
 					<div className='flex flex-col'>
 						<button
+                        aria-label='Edit Comment'
 							onClick={() => {
 								setEditorOpen(!editorOpen)
 								setComment(body)
@@ -87,6 +88,7 @@ export default function Comment({ body, userId, id, postId }: Props) {
 						</button>
 						{editorOpen ? (
 							<button
+                            aria-label='Delete Comment'
 								onClick={() => {
 									handleDelete()
 									setEditorOpen(!editorOpen)
