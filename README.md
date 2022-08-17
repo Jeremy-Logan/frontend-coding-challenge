@@ -11,6 +11,8 @@
 - Overall it was a fun challenge! I haven't seen one quite like this before. 
 
 
+--------------
+
 
 Hello and welcome! This short assessment is designed to be a quick demonstration of your frontend development skills. We are looking to evaluate your ability to
 
