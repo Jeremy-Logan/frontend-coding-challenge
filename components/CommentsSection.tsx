@@ -36,7 +36,7 @@ function CommentsSection({ commentCount, id }: PostProps) {
 				<p className='text-xs font-semibold'>{comments.length}</p>
 				<ChevronUpIcon
 					className={open ? 'ml-2 block w-4 h-4' : 'hidden'}
-				/>{console.log(comments)}
+				/>
 			</button>
 			<Transition
 				show={open}
