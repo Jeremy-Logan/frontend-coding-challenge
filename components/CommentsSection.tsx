@@ -9,7 +9,7 @@ import CommentForm from './CommentForm'
 import { Transition } from '@headlessui/react'
 import { AnnotationIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
-function CommentsSection({ commentCount, id }: PostProps) {
+function CommentsSection({ id }: PostProps) {
 	const [open, setOpen] = useState(false)
 	const { posts } = useGetPosts(`/posts/${id}/comments`)
 	const [comments, setComments] = useState([])

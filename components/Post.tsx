@@ -8,17 +8,11 @@ export interface PostProps {
 	id?: number
 	image?: string
 	body?: string
-	commentCount?: number
+	
 }
 
-const Post = ({ userId, id, image, body, commentCount }: PostProps) => {
-	const [count, setCount] = useState<number>(0)
-
-	useEffect(() => {
-		const updateCount: number | any = commentCount
-		setCount(updateCount)
-	}, [commentCount])
-
+const Post = ({ userId, id, image, body }: PostProps) => {
+	
 	if (!id)
 		return (
 			<div className='border border-slate-300 shadow rounded-md p-4 max-w-sm mx-auto mt-2 w-[420px] bg-white'>
@@ -54,7 +48,7 @@ const Post = ({ userId, id, image, body, commentCount }: PostProps) => {
 					/>
 				</div>
 			)}
-			<CommentsSection commentCount={count} id={id} />
+			<CommentsSection id={id} />
 		</div>
 	)
 }
