@@ -1,5 +1,4 @@
-// These two request hooks could be redundant. The refreshInterval on UseGetPosts is there so the comment count will update in the interface. 
-// There may be a better way to accomplish that and resolve the redundancy.
+// These two request hooks could be redundant. Could probably simplify by using one hook since the path is specified by the component.
 
 import useSWR from 'swr'
 
@@ -12,9 +11,7 @@ export const useGetPosts = (path: string) => {
 	}
 	const url = baseUrl + path
 
-	const { data: posts, error } = useSWR(url, fetcher, {
-		refreshInterval: 1000,
-	})
+	const { data: posts, error } = useSWR(url, fetcher)
 
 	return { posts, error }
 }
