@@ -33,10 +33,10 @@ function CommentsSection({ commentCount, id }: PostProps) {
 				className='flex items-center mt-2 ml-2 mb-2 bg-slate-200 text-slate-700 px-2 py-1 rounded-md text-sm transition ease-in-out duration-200 active:bg-slate-400 focus:outline-none focus:ring-[1px] focus:ring-slate-400 hover:bg-slate-300'
 				onClick={() => setOpen(!open)}>
 				<AnnotationIcon className='h-4 w-4 mr-1' />
-				<p className='text-xs font-semibold'>{commentCount}</p>
+				<p className='text-xs font-semibold'>{comments.length}</p>
 				<ChevronUpIcon
 					className={open ? 'ml-2 block w-4 h-4' : 'hidden'}
-				/>
+				/>{console.log(comments)}
 			</button>
 			<Transition
 				show={open}
